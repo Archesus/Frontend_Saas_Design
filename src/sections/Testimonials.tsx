@@ -21,7 +21,7 @@ const testimonials = [
     username: "@jamietechguru00",
   },
   {
-    text: "Our team's productivity has skyrocketed since we started using this tool. ",
+    text: "Our team's productivity has skyrocketed since we started using this tool.",
     imageSrc: avatar2.src,
     name: "Josh Smith",
     username: "@jjsmith",
@@ -94,26 +94,28 @@ const TestimonialsColumn = (props: {
     >
       {[...new Array(2)].fill(0).map((_, index) => (
         <React.Fragment key={index}>
-          {props.testimonials.map(({ text, imageSrc, name, username }) => (
-            <div className="card">
-              <div>{text}</div>
-              <div className="flex items-center gap-2 mt-5">
-                <Image
-                  src={imageSrc}
-                  alt={name}
-                  width={40}
-                  height={40}
-                  className="h-10 w-10 rounded-full"
-                />
-                <div className="flex flex-col">
-                  <div className="font-medium tracking-tight leading-5">
-                    {name}
+          {props.testimonials.map(
+            ({ text, imageSrc, name, username }, testimonialIndex) => (
+              <div key={testimonialIndex} className="card">
+                <div>{text}</div>
+                <div className="flex items-center gap-2 mt-5">
+                  <Image
+                    src={imageSrc}
+                    alt={name}
+                    width={40}
+                    height={40}
+                    className="h-10 w-10 rounded-full"
+                  />
+                  <div className="flex flex-col">
+                    <div className="font-medium tracking-tight leading-5">
+                      {name}
+                    </div>
+                    <div className="leading-5 tracking-tight">{username}</div>
                   </div>
-                  <div className="leading-5 tracking-tight">{username}</div>
                 </div>
               </div>
-            </div>
-          ))}
+            )
+          )}
         </React.Fragment>
       ))}
     </motion.div>
@@ -130,21 +132,25 @@ export const Testimonials = () => {
           </div>
           <h2 className="section-title mt-5">What our users say</h2>
           <p className="section-description mt-5">
-            From intuitive design to powerful features, our app has become an
-            essential tool for users around the world.
+            From intuitive design to powerful features, our product has users
+            raving.
           </p>
         </div>
-        <div className="flex justify-center gap-6 mt-10 [mask-image:linear-gradient(to_bottom,transparent,black_25%,black_75%,transparent)] max-h-[738px] overflow-hidden">
-          <TestimonialsColumn testimonials={firstColumn} duration={15} />
+        <div className="grid grid-cols-1 md:grid-cols-3 mt-14 gap-6">
+          <TestimonialsColumn
+            testimonials={firstColumn}
+            duration={10}
+            className="overflow-hidden"
+          />
           <TestimonialsColumn
             testimonials={secondColumn}
-            className="hidden md:block"
-            duration={19}
+            duration={12}
+            className="overflow-hidden"
           />
           <TestimonialsColumn
             testimonials={thirdColumn}
-            className="hidden lg:block"
-            duration={17}
+            duration={8}
+            className="overflow-hidden"
           />
         </div>
       </div>
